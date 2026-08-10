@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Howick Rifle Club - Club Night TV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050607;
+      --panel: #101416;
+      --panel-2: #171d20;
+      --line: #27343a;
+      --text: #f3f8fb;
+      --muted: #9bb0bb;
+      --green-row: #1a3326;
+      --green-line: #305742;
+      --accent: #5ac7ff;
+      --warn: #ffcc70;
+      --tryout: #ffd966;
+      --footer-start: #0b1f2e;
+      --footer-end: #0a402f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 0%, #1a2328 0%, transparent 35%),
+        radial-gradient(circle at 90% 10%, #10253a 0%, transparent 32%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Rajdhani", "Segoe UI", sans-serif;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .app {
+      padding: 1rem 1.4rem 0.8rem;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      gap: 0.7rem;
+      min-height: 0;
+    }
+
+    .top-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.65rem;
+    }
+
+    .club-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .club-brand img {
+      width: min(32vw, 360px);
+      max-height: 74px;
+      object-fit: contain;
+    }
+
+    .club-heading {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(1.4rem, 2.3vw, 2.5rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #e8f3fa;
+      white-space: nowrap;
+    }
+
+    .status {
+      text-align: right;
+      font-size: clamp(0.95rem, 1.2vw, 1.25rem);
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    .status .warning {
+      color: var(--warn);
+      font-weight: 700;
+      display: none;
+      margin-top: 0.15rem;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .meta-card {
+      background: linear-gradient(180deg, #131a1e 0%, #0f1418 100%);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.35rem 0.55rem;
+      min-height: 48px;
+    }
+
+    .meta-card .k {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(0.75rem, 0.9vw, 0.95rem);
+    }
+
+    .meta-card .v {
+      font-size: clamp(1rem, 1.25vw, 1.35rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .detail-row {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .detail-label {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 0.2rem;
+      text-transform: uppercase;
+    }
+
+    .detail-btn {
+      border: 1px solid #2c3940;
+      background: #11181c;
+      color: #d4e2e9;
+      border-radius: 6px;
+      min-width: 86px;
+      padding: 0.42rem 0.6rem;
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(0.9rem, 1.15vw, 1.22rem);
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: 120ms ease;
+    }
+
+    .detail-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .detail-btn.active {
+      border-color: #7ec8ff;
+      background: #1d3445;
+      color: #ffffff;
+      box-shadow: inset 0 0 0 1px #9fd6ff;
+    }
+
+    .tables {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      min-height: 0;
+      padding-bottom: 0.4rem;
+    }
+
+    .board {
+      background: linear-gradient(180deg, #12181c 0%, #0f1518 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 0;
+    }
+
+    .board-title {
+      font-family: "Oswald", sans-serif;
+      background: #1c2429;
+      border-bottom: 1px solid #33444c;
+      color: #cce4f2;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.45rem 0.6rem;
+      font-size: clamp(0.95rem, 1.2vw, 1.25rem);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: clamp(0.85rem, 1.12vw, 1.2rem);
+    }
+
+    thead th {
+      text-transform: uppercase;
+      font-family: "Oswald", sans-serif;
+      letter-spacing: 0.06em;
+      font-size: clamp(0.78rem, 0.95vw, 1rem);
+      background: #1a2328;
+      color: #d8ecf8;
+      border-bottom: 1px solid #2d3e45;
+      padding: 0.35rem 0.3rem;
+    }
+
+    tbody td {
+      border-bottom: 1px solid #1f2c31;
+      padding: 0.3rem 0.3rem;
+      color: #f4f9fc;
+      vertical-align: middle;
+      line-height: 1.1;
+      height: 2.08rem;
+    }
+
+    tbody tr.completed {
+      background: var(--green-row);
+    }
+
+    tbody tr.completed td {
+      border-bottom-color: var(--green-line);
+    }
+
+    tbody tr.empty td {
+      color: #708792;
+    }
+
+    .col-mound { width: 12%; text-align: center; }
+    .col-name { width: 44%; }
+    .col-gd { width: 8%; text-align: center; }
+    .col-card { width: 12%; text-align: center; }
+    .col-total { width: 12%; text-align: center; font-weight: 700; }
+
+    .name-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      min-width: 0;
+    }
+
+    .name-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tryout-badge {
+      display: inline-block;
+      font-size: 0.62em;
+      font-weight: 700;
+      padding: 0.1rem 0.28rem;
+      border-radius: 4px;
+      border: 1px solid #8b7021;
+      color: #332806;
+      background: linear-gradient(180deg, #ffe38f 0%, #e8b94a 100%);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      border-top: 1px solid #325461;
+      background: linear-gradient(90deg, var(--footer-start) 0%, #143148 45%, var(--footer-end) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 0.42rem 1rem;
+      min-height: 52px;
+    }
+
+    .footer img {
+      height: 30px;
+      width: auto;
+      opacity: 0.94;
+    }
+
+    .footer span {
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #e8f5ff;
+      font-size: clamp(0.88rem, 1.02vw, 1.1rem);
+      opacity: 0.92;
+    }
+
+    @media (max-width: 1180px) {
+      .meta-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .tables {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="top-row">
+      <div class="club-brand">
+        <img src="assets/hrc-logo.svg" alt="Howick Rifle Club logo">
+      </div>
+      <div class="club-heading">Howick Rifle Club</div>
+      <div class="status">
+        <div id="updated-label">Waiting for first update...</div>
+        <div id="warning-label" class="warning">Connection warning: showing last published data</div>
+      </div>
+    </section>
+
+    <section class="meta-row">
+      <article class="meta-card">
+        <div class="k">Club</div>
+        <div id="meta-club" class="v">Howick Rifle Club</div>
+      </article>
+      <article class="meta-card">
+        <div class="k">Event</div>
+        <div id="meta-event" class="v">Club Night</div>
+      </article>
+      <article class="meta-card">
+        <div class="k">Date</div>
+        <div id="meta-date" class="v">-</div>
+      </article>
+      <article class="meta-card">
+        <div class="k">Current Detail</div>
+        <div id="meta-detail" class="v">-</div>
+      </article>
+      <article class="meta-card">
+        <div class="k">Published</div>
+        <div id="meta-generated" class="v">-</div>
+      </article>
+    </section>
+
+    <section class="detail-row" id="detail-buttons">
+      <div class="detail-label">Details:</div>
+    </section>
+
+    <section class="tables">
+      <article class="board">
+        <div class="board-title">Upstairs - Mounds 1-8</div>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-mound">Mound</th>
+              <th class="col-name">Name</th>
+              <th class="col-gd">GD</th>
+              <th class="col-card">Card 1</th>
+              <th class="col-card">Card 2</th>
+              <th class="col-total">Total</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-upstairs"></tbody>
+        </table>
+      </article>
+
+      <article class="board">
+        <div class="board-title">Downstairs - Mounds 9-16</div>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-mound">Mound</th>
+              <th class="col-name">Name</th>
+              <th class="col-gd">GD</th>
+              <th class="col-card">Card 1</th>
+              <th class="col-card">Card 2</th>
+              <th class="col-total">Total</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-downstairs"></tbody>
+        </table>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/rangehub-logo.svg" alt="RangeHub logo">
+    <span>RangeHub Community Edition</span>
+  </footer>
+
+  <script>
+    const SOURCE_URL = "https://rangehub-ce.github.io/RangeHub-Live/live/club-night-tv.json";
+    const REFRESH_MS = 10000;
+    const ROTATE_MS = 50000;
+    const DETAILS = [1, 2, 3, 4, 5];
+
+    let latestData = null;
+    let selectedDetail = 1;
+    let rotateIndex = 0;
+    let manualLockUntil = 0;
+
+    const detailButtonsRoot = document.getElementById("detail-buttons");
+    const warningLabel = document.getElementById("warning-label");
+    const updatedLabel = document.getElementById("updated-label");
+    const metaClub = document.getElementById("meta-club");
+    const metaEvent = document.getElementById("meta-event");
+    const metaDate = document.getElementById("meta-date");
+    const metaDetail = document.getElementById("meta-detail");
+    const metaGenerated = document.getElementById("meta-generated");
+    const upstairsBody = document.getElementById("tbody-upstairs");
+    const downstairsBody = document.getElementById("tbody-downstairs");
+
+    function toLocalDateTime(iso) {
+      if (!iso) return "-";
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return "-";
+      return d.toLocaleString([], {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+    }
+
+    function scoreFormat(points, inners) {
+      if (typeof points !== "number") return "";
+      if (typeof inners === "number") return `${points}.${inners}`;
+      return String(points);
+    }
+
+    function getCard(shooter, cardNumber) {
+      if (!shooter || !Array.isArray(shooter.cardScores)) return "";
+      const card = shooter.cardScores.find((x) => x && x.cardNumber === cardNumber);
+      if (!card) return "";
+      return scoreFormat(card.wholePoints, card.inners);
+    }
+
+    function getGrade(shooter) {
+      const candidates = [
+        shooter.grade,
+        shooter.shooterGrade,
+        shooter.gradeCode,
+        shooter.membershipGrade
+      ];
+      const grade = candidates.find((x) => typeof x === "string" && x.trim().length > 0);
+      return grade || "";
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function isPractice(shooter) {
+      if (!shooter) return false;
+      return shooter.isPractice === true || shooter.participantType === "PRACTICE";
+    }
+
+    function filteredShooters(data) {
+      if (!data || !Array.isArray(data.shooters)) return [];
+      return data.shooters.filter((s) => !isPractice(s));
+    }
+
+    function availableDetails(data) {
+      if (!data) return [];
+      const fromCompleted = Array.isArray(data.completedDetails) ? data.completedDetails : [];
+      const byShooters = new Set(filteredShooters(data).map((s) => Number(s.detailNumber)).filter(Boolean));
+      const combined = new Set([...fromCompleted.map(Number), ...byShooters]);
+      return DETAILS.filter((d) => combined.has(d));
+    }
+
+    function byMound(detailShooters) {
+      const map = new Map();
+      detailShooters.forEach((shooter) => {
+        const mound = Number(shooter.moundNumber);
+        if (Number.isInteger(mound) && mound >= 1 && mound <= 16) {
+          map.set(mound, shooter);
+        }
+      });
+      return map;
+    }
+
+    function rowHtml(mound, shooter) {
+      if (!shooter) {
+        return `
+          <tr class="empty">
+            <td class="col-mound">${mound}</td>
+            <td class="col-name"></td>
+            <td class="col-gd"></td>
+            <td class="col-card"></td>
+            <td class="col-card"></td>
+            <td class="col-total"></td>
+          </tr>
+        `;
+      }
+
+      const card1 = getCard(shooter, 1);
+      const card2 = getCard(shooter, 2);
+      const total = scoreFormat(shooter.totalPoints, shooter.totalInners);
+      const grade = getGrade(shooter);
+      const tryout = shooter.isTryout ? '<span class="tryout-badge">TRYOUT</span>' : "";
+      const safeName = escapeHtml(shooter.shooterName || "");
+
+      return `
+        <tr class="completed">
+          <td class="col-mound">${mound}</td>
+          <td class="col-name"><span class="name-wrap"><span class="name-text">${safeName}</span>${tryout}</span></td>
+          <td class="col-gd">${grade}</td>
+          <td class="col-card">${card1}</td>
+          <td class="col-card">${card2}</td>
+          <td class="col-total">${total}</td>
+        </tr>
+      `;
+    }
+
+    function renderDetailButtons(available) {
+      const oldButtons = detailButtonsRoot.querySelectorAll("button");
+      oldButtons.forEach((el) => el.remove());
+
+      DETAILS.forEach((detail) => {
+        const btn = document.createElement("button");
+        const present = available.includes(detail);
+        btn.className = `detail-btn ${selectedDetail === detail ? "active" : ""}`;
+        btn.textContent = `Detail ${detail}`;
+        btn.disabled = !present;
+        btn.addEventListener("click", () => {
+          selectedDetail = detail;
+          manualLockUntil = Date.now() + (ROTATE_MS * 2);
+          render();
+        });
+        detailButtonsRoot.appendChild(btn);
+      });
+    }
+
+    function render() {
+      if (!latestData) return;
+
+      const shooters = filteredShooters(latestData).filter((s) => Number(s.detailNumber) === selectedDetail);
+      const moundMap = byMound(shooters);
+
+      const upstairsRows = [];
+      for (let mound = 1; mound <= 8; mound += 1) upstairsRows.push(rowHtml(mound, moundMap.get(mound)));
+      const downstairsRows = [];
+      for (let mound = 9; mound <= 16; mound += 1) downstairsRows.push(rowHtml(mound, moundMap.get(mound)));
+
+      upstairsBody.innerHTML = upstairsRows.join("");
+      downstairsBody.innerHTML = downstairsRows.join("");
+
+      const eventData = latestData.event || {};
+      metaClub.textContent = eventData.clubName || "Howick Rifle Club";
+      metaEvent.textContent = eventData.title || "Club Night";
+      metaDate.textContent = toLocalDateTime(eventData.date);
+      metaDetail.textContent = `Detail ${selectedDetail}`;
+      metaGenerated.textContent = toLocalDateTime(latestData.generatedAt);
+
+      const available = availableDetails(latestData);
+      renderDetailButtons(available);
+    }
+
+    function pickActiveDetail(data, rotate = false) {
+      const available = availableDetails(data);
+      if (available.length === 0) {
+        selectedDetail = 1;
+        return;
+      }
+
+      if (!available.includes(selectedDetail)) {
+        selectedDetail = available[0];
+      }
+
+      const shouldRotate = rotate && available.length > 1 && Date.now() > manualLockUntil;
+      if (shouldRotate) {
+        if (rotateIndex >= available.length) rotateIndex = 0;
+        selectedDetail = available[rotateIndex];
+        rotateIndex = (rotateIndex + 1) % available.length;
+      }
+    }
+
+    async function fetchLatest() {
+      try {
+        const url = `${SOURCE_URL}?t=${Date.now()}`;
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        latestData = data;
+        warningLabel.style.display = "none";
+        updatedLabel.textContent = `Updated: ${toLocalDateTime(new Date().toISOString())}`;
+        pickActiveDetail(data, false);
+        render();
+      } catch (error) {
+        warningLabel.style.display = "block";
+        if (!latestData) {
+          updatedLabel.textContent = "Waiting for first successful update...";
+        }
+      }
+    }
+
+    function startAutoRotation() {
+      setInterval(() => {
+        if (!latestData) return;
+        pickActiveDetail(latestData, true);
+        render();
+      }, ROTATE_MS);
+    }
+
+    function init() {
+      renderDetailButtons([]);
+      fetchLatest();
+      setInterval(fetchLatest, REFRESH_MS);
+      startAutoRotation();
+    }
+
+    init();
+  </script>
+</body>
+</html>
