@@ -1,41 +1,21 @@
 {
   "event": {
-    "id": "cmsmff3k90003m316c1gbxmub",
-    "title": "Club Night 2026-08-09",
-    "date": "2026-08-09T23:21:10.088Z",
+    "id": "cmsmjqxdj0001mr10wvmsyke6",
+    "title": "Club Night 2026-08-10",
+    "date": "2026-08-10T01:22:20.407Z",
     "clubName": "Howick Rifle Club",
     "status": "OPEN"
   },
-  "generatedAt": "2026-08-09T23:58:18.978Z",
+  "generatedAt": "2026-08-10T01:40:26.129Z",
   "completedDetails": [
-    1,
-    2,
-    3
+    1
   ],
   "shooters": [
     {
-      "personId": "cmsflbfc0001eit75wpga2fv7",
-      "shooterName": "Georgia McCabe",
+      "personId": "cmsflbfc0001dit75fit5y4b2",
+      "shooterName": "Sean McCabe",
       "participantType": "MEMBER",
       "detailNumber": 1,
-      "moundNumber": 6,
-      "cardType": "SHOT_10",
-      "isTryout": false,
-      "cardScores": [
-        {
-          "cardNumber": 1,
-          "wholePoints": 95,
-          "inners": 5
-        }
-      ],
-      "totalPoints": 95,
-      "totalInners": 5
-    },
-    {
-      "personId": "cmsflbfc0001fit75e5dycy8a",
-      "shooterName": "Toby McCabe",
-      "participantType": "MEMBER",
-      "detailNumber": 2,
       "moundNumber": 2,
       "cardType": "SHOT_10",
       "isTryout": false,
@@ -43,29 +23,11 @@
         {
           "cardNumber": 1,
           "wholePoints": 99,
-          "inners": 6
+          "inners": 3
         }
       ],
       "totalPoints": 99,
-      "totalInners": 6
-    },
-    {
-      "personId": "cmsflbfc0001dit75fit5y4b2",
-      "shooterName": "Sean McCabe",
-      "participantType": "MEMBER",
-      "detailNumber": 3,
-      "moundNumber": 3,
-      "cardType": "SHOT_10",
-      "isTryout": false,
-      "cardScores": [
-        {
-          "cardNumber": 1,
-          "wholePoints": 100,
-          "inners": 10
-        }
-      ],
-      "totalPoints": 100,
-      "totalInners": 10
+      "totalInners": 3
     }
   ]
 }
