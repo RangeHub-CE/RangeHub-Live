@@ -6,9 +6,10 @@
     "clubName": "Howick Rifle Club",
     "status": "OPEN"
   },
-  "generatedAt": "2026-08-10T01:40:26.129Z",
+  "generatedAt": "2026-08-10T01:40:45.312Z",
   "completedDetails": [
-    1
+    1,
+    2
   ],
   "shooters": [
     {
@@ -28,6 +29,29 @@
       ],
       "totalPoints": 99,
       "totalInners": 3
+    },
+    {
+      "personId": "cmsflbfc0001dit75fit5y4b2",
+      "shooterName": "Sean McCabe",
+      "participantType": "MEMBER",
+      "detailNumber": 2,
+      "moundNumber": 2,
+      "cardType": "SHOT_20",
+      "isTryout": false,
+      "cardScores": [
+        {
+          "cardNumber": 1,
+          "wholePoints": 100,
+          "inners": 6
+        },
+        {
+          "cardNumber": 2,
+          "wholePoints": 100,
+          "inners": 7
+        }
+      ],
+      "totalPoints": 200,
+      "totalInners": 13
     }
   ]
 }
