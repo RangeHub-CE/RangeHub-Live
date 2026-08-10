@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Howick Rifle Club - Club Night Mobile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050607;
+      --line: #253239;
+      --panel: #101518;
+      --head: #1a2328;
+      --text: #f2f8fc;
+      --muted: #9bb0bb;
+      --accent: #5ac7ff;
+      --warn: #ffcc70;
+      --green-row: #1a3326;
+      --green-line: #305742;
+      --tryout: #ffd966;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Rajdhani", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #1a2328 0%, transparent 35%),
+        radial-gradient(circle at 90% 8%, #10253a 0%, transparent 32%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0.65rem 0.55rem 0.9rem;
+    }
+
+    .header {
+      background: #050607;
+      border-bottom: 1px solid var(--line);
+      padding: 0.45rem 0.3rem 0.5rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .header-top {
+      display: block;
+    }
+
+    .header-top img {
+      width: min(78vw, 320px);
+      height: auto;
+      max-height: 66px;
+      object-fit: contain;
+    }
+
+    .update {
+      text-align: left;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.2;
+      margin-top: 0.18rem;
+    }
+
+    .warning {
+      color: var(--warn);
+      font-weight: 700;
+      display: none;
+      margin-top: 0.15rem;
+    }
+
+    .meta {
+      margin-top: 0.35rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.18rem 0.55rem;
+      font-size: 0.89rem;
+      color: #dce8ef;
+    }
+
+    .meta-line {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta-k {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.73rem;
+      margin-right: 0.26rem;
+    }
+
+    .detail-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 12;
+      background: linear-gradient(180deg, rgba(5, 6, 7, 0.98) 0%, rgba(5, 6, 7, 0.95) 100%);
+      border-bottom: 1px solid var(--line);
+      margin: 0 0 0.55rem;
+      padding: 0.46rem 0.55rem 0.5rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .detail-label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.8rem;
+      margin-right: 0.1rem;
+    }
+
+    .detail-btn {
+      border: 1px solid #2c3940;
+      background: #11181c;
+      color: #d4e2e9;
+      border-radius: 5px;
+      min-width: 58px;
+      padding: 0.26rem 0.44rem;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.89rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    .detail-btn.active {
+      border-color: #7ec8ff;
+      background: #1d3445;
+      color: #ffffff;
+      box-shadow: inset 0 0 0 1px #9fd6ff;
+    }
+
+    .detail-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .board {
+      margin-bottom: 0.62rem;
+      background: linear-gradient(180deg, #11181c 0%, #0f1518 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .board-title {
+      background: #1b2429;
+      border-bottom: 1px solid #32444b;
+      color: #cce4f2;
+      text-transform: uppercase;
+      letter-spacing: 0.085em;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.9rem;
+      padding: 0.35rem 0.48rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 0.88rem;
+    }
+
+    thead th {
+      background: var(--head);
+      color: #d8ecf8;
+      border-bottom: 1px solid #2d3e45;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.15rem;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      border-bottom: 1px solid #1f2c31;
+      padding: 0.29rem 0.15rem;
+      color: #f4f9fc;
+      height: 1.9rem;
+      line-height: 1.06;
+      vertical-align: middle;
+    }
+
+    tbody tr.completed {
+      background: var(--green-row);
+    }
+
+    tbody tr.completed td {
+      border-bottom-color: var(--green-line);
+    }
+
+    tbody tr.empty td {
+      color: #708792;
+    }
+
+    .col-mound { width: 12%; text-align: center; }
+    .col-name { width: 39%; }
+    .col-gd { width: 8%; text-align: center; }
+    .col-card { width: 13%; text-align: center; }
+    .col-total { width: 15%; text-align: center; font-weight: 700; }
+
+    .name-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.22rem;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .name-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+
+    .tryout-badge {
+      display: inline-block;
+      font-size: 0.55em;
+      font-weight: 700;
+      padding: 0.08rem 0.22rem;
+      border-radius: 4px;
+      border: 1px solid #8b7021;
+      color: #332806;
+      background: linear-gradient(180deg, #ffe38f 0%, #e8b94a 100%);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      border-top: 1px solid #325461;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      margin: 0;
+      padding: 0.42rem 0.9rem;
+    }
+
+    .footer img {
+      height: 30px;
+      width: auto;
+      max-width: 100%;
+      opacity: 0.94;
+    }
+
+    @media (max-width: 360px) {
+      .header-top img {
+        max-height: 58px;
+      }
+
+      table {
+        font-size: 0.83rem;
+      }
+
+      thead th {
+        font-size: 0.67rem;
+      }
+
+      .meta {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="header-top">
+        <img src="assets/hrc-logo.svg" alt="Howick Rifle Club logo">
+        <div class="update">
+          <div id="updated-label">Waiting for update...</div>
+          <div id="warning-label" class="warning">Connection warning</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-line"><span class="meta-k">Event</span><span id="meta-event">Club Night</span></div>
+        <div class="meta-line"><span class="meta-k">Date</span><span id="meta-date">-</span></div>
+        <div class="meta-line"><span class="meta-k">Detail</span><span id="meta-detail">-</span></div>
+        <div class="meta-line"><span class="meta-k">Published</span><span id="meta-generated">-</span></div>
+      </div>
+    </header>
+
+    <section class="detail-sticky">
+      <div class="detail-row" id="detail-buttons">
+        <div class="detail-label">Details</div>
+      </div>
+    </section>
+
+    <section class="board">
+      <div class="board-title">Upstairs - Mounds 1-8</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-mound">Mound</th>
+            <th class="col-name">Name</th>
+            <th class="col-gd">GD</th>
+            <th class="col-card">C1</th>
+            <th class="col-card">C2</th>
+            <th class="col-total">Total</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-upstairs"></tbody>
+      </table>
+    </section>
+
+    <section class="board">
+      <div class="board-title">Downstairs - Mounds 9-16</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-mound">Mound</th>
+            <th class="col-name">Name</th>
+            <th class="col-gd">GD</th>
+            <th class="col-card">C1</th>
+            <th class="col-card">C2</th>
+            <th class="col-total">Total</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-downstairs"></tbody>
+      </table>
+    </section>
+
+    <footer class="footer">
+      <img src="assets/rangehub-logo.svg" alt="RangeHub logo">
+    </footer>
+  </main>
+
+  <script>
+    const SOURCE_URL = "https://rangehub-ce.github.io/RangeHub-Live/live/club-night-mobile.json";
+    const REFRESH_MS = 10000;
+    const DETAILS = [1, 2, 3, 4, 5];
+
+    let latestData = null;
+    let selectedDetail = 1;
+
+    const detailButtonsRoot = document.getElementById("detail-buttons");
+    const warningLabel = document.getElementById("warning-label");
+    const updatedLabel = document.getElementById("updated-label");
+    const metaEvent = document.getElementById("meta-event");
+    const metaDate = document.getElementById("meta-date");
+    const metaDetail = document.getElementById("meta-detail");
+    const metaGenerated = document.getElementById("meta-generated");
+    const upstairsBody = document.getElementById("tbody-upstairs");
+    const downstairsBody = document.getElementById("tbody-downstairs");
+
+    function toLocalDateTime(iso) {
+      if (!iso) return "-";
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return "-";
+      return d.toLocaleString([], {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function scoreFormat(points, inners) {
+      if (typeof points !== "number") return "";
+      if (typeof inners === "number") return `${points}.${inners}`;
+      return String(points);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function getCard(shooter, cardNumber) {
+      if (!shooter || !Array.isArray(shooter.cardScores)) return "";
+      const card = shooter.cardScores.find((x) => x && x.cardNumber === cardNumber);
+      if (!card) return "";
+      return scoreFormat(card.wholePoints, card.inners);
+    }
+
+    function getGrade(shooter) {
+      const candidates = [
+        shooter.grade,
+        shooter.shooterGrade,
+        shooter.gradeCode,
+        shooter.membershipGrade
+      ];
+      const grade = candidates.find((x) => typeof x === "string" && x.trim().length > 0);
+      return grade || "";
+    }
+
+    function isPractice(shooter) {
+      if (!shooter) return false;
+      return shooter.isPractice === true || shooter.participantType === "PRACTICE";
+    }
+
+    function filteredShooters(data) {
+      if (!data || !Array.isArray(data.shooters)) return [];
+      return data.shooters.filter((s) => !isPractice(s));
+    }
+
+    function availableDetails(data) {
+      if (!data) return [];
+      const fromCompleted = Array.isArray(data.completedDetails) ? data.completedDetails : [];
+      const byShooters = new Set(filteredShooters(data).map((s) => Number(s.detailNumber)).filter(Boolean));
+      const combined = new Set([...fromCompleted.map(Number), ...byShooters]);
+      return DETAILS.filter((d) => combined.has(d));
+    }
+
+    function byMound(detailShooters) {
+      const map = new Map();
+      detailShooters.forEach((shooter) => {
+        const mound = Number(shooter.moundNumber);
+        if (!Number.isInteger(mound) || mound < 1 || mound > 16) return;
+        if (!map.has(mound)) {
+          map.set(mound, shooter);
+        }
+      });
+      return map;
+    }
+
+    function rowHtml(mound, shooter) {
+      if (!shooter) {
+        return `
+          <tr class="empty">
+            <td class="col-mound">${mound}</td>
+            <td class="col-name"></td>
+            <td class="col-gd"></td>
+            <td class="col-card"></td>
+            <td class="col-card"></td>
+            <td class="col-total"></td>
+          </tr>
+        `;
+      }
+
+      const card1 = getCard(shooter, 1);
+      const card2 = getCard(shooter, 2);
+      const total = scoreFormat(shooter.totalPoints, shooter.totalInners);
+      const grade = escapeHtml(getGrade(shooter));
+      const tryout = shooter.isTryout ? '<span class="tryout-badge">TRYOUT</span>' : "";
+      const safeName = escapeHtml(shooter.shooterName || "");
+
+      return `
+        <tr class="completed">
+          <td class="col-mound">${mound}</td>
+          <td class="col-name"><span class="name-wrap"><span class="name-text">${safeName}</span>${tryout}</span></td>
+          <td class="col-gd">${grade}</td>
+          <td class="col-card">${card1}</td>
+          <td class="col-card">${card2}</td>
+          <td class="col-total">${total}</td>
+        </tr>
+      `;
+    }
+
+    function renderDetailButtons(available) {
+      const oldButtons = detailButtonsRoot.querySelectorAll("button");
+      oldButtons.forEach((el) => el.remove());
+
+      DETAILS.forEach((detail) => {
+        const btn = document.createElement("button");
+        const present = available.includes(detail);
+        btn.className = `detail-btn ${selectedDetail === detail ? "active" : ""}`;
+        btn.textContent = `D${detail}`;
+        btn.disabled = !present;
+        btn.addEventListener("click", () => {
+          selectedDetail = detail;
+          render();
+        });
+        detailButtonsRoot.appendChild(btn);
+      });
+    }
+
+    function render() {
+      if (!latestData) return;
+
+      const shooters = filteredShooters(latestData).filter((s) => Number(s.detailNumber) === selectedDetail);
+      const moundMap = byMound(shooters);
+
+      const upstairsRows = [];
+      for (let mound = 1; mound <= 8; mound += 1) upstairsRows.push(rowHtml(mound, moundMap.get(mound)));
+      const downstairsRows = [];
+      for (let mound = 9; mound <= 16; mound += 1) downstairsRows.push(rowHtml(mound, moundMap.get(mound)));
+
+      upstairsBody.innerHTML = upstairsRows.join("");
+      downstairsBody.innerHTML = downstairsRows.join("");
+
+      const eventData = latestData.event || {};
+      metaEvent.textContent = eventData.title || "Club Night";
+      metaDate.textContent = toLocalDateTime(eventData.date);
+      metaDetail.textContent = `Detail ${selectedDetail}`;
+      metaGenerated.textContent = toLocalDateTime(latestData.generatedAt);
+
+      renderDetailButtons(availableDetails(latestData));
+    }
+
+    function setInitialDetail(data) {
+      const available = availableDetails(data);
+      if (available.length === 0) {
+        selectedDetail = 1;
+        return;
+      }
+      if (!available.includes(selectedDetail)) {
+        selectedDetail = available[0];
+      }
+    }
+
+    async function fetchLatest() {
+      try {
+        const url = `${SOURCE_URL}?t=${Date.now()}`;
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        latestData = data;
+        setInitialDetail(data);
+        warningLabel.style.display = "none";
+        updatedLabel.textContent = `Updated ${toLocalDateTime(new Date().toISOString())}`;
+        render();
+      } catch (error) {
+        warningLabel.style.display = "block";
+        if (!latestData) {
+          updatedLabel.textContent = "Waiting for first successful update";
+        }
+      }
+    }
+
+    function init() {
+      renderDetailButtons([]);
+      fetchLatest();
+      setInterval(fetchLatest, REFRESH_MS);
+    }
+
+    init();
+  </script>
+</body>
+</html>
