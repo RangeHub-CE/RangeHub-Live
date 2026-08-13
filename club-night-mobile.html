@@ -269,46 +269,61 @@
 
     @media (max-width: 500px) {
       .app {
-        padding: 0.45rem 0.38rem 0.8rem;
+        max-width: 500px;
+        padding: 0.34rem 0.38rem 0.76rem;
       }
 
       .header {
-        padding: 0.42rem 0.35rem 0.52rem;
+        padding: 0.18rem 0.24rem 0.2rem;
+        margin-bottom: 0.26rem;
       }
 
       .header-top img {
-        width: min(80vw, 270px);
-        max-height: 56px;
+        width: min(72vw, 220px);
+        max-height: 38px;
+      }
+
+      .update {
+        font-size: 0.7rem;
+        line-height: 1.15;
+        margin-top: 0.12rem;
       }
 
       .meta {
-        grid-template-columns: 1fr;
-        gap: 0.16rem 0.4rem;
-        font-size: 0.82rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.08rem 0.34rem;
+        font-size: 0.66rem;
+        margin-top: 0.18rem;
       }
 
       .meta-k {
-        font-size: 0.7rem;
+        font-size: 0.58rem;
+        margin-right: 0.18rem;
       }
 
       .detail-sticky {
-        margin-bottom: 0.5rem;
-        padding: 0.42rem 0.4rem 0.46rem;
+        margin-bottom: 0.28rem;
+        padding: 0.18rem 0.32rem 0.22rem;
       }
 
       .detail-label {
-        font-size: 0.72rem;
+        font-size: 0.7rem;
       }
 
       .detail-btn {
         min-width: 52px;
-        padding: 0.22rem 0.42rem;
+        padding: 0.22rem 0.4rem;
         font-size: 0.8rem;
       }
 
+      .board {
+        margin-bottom: 0.42rem;
+      }
+
       .board-title {
-        font-size: 0.82rem;
-        padding: 0.35rem 0.45rem;
+        font-size: 0.7rem;
+        padding: 0.24rem 0.42rem;
+        letter-spacing: 0.08em;
       }
 
       thead {
@@ -324,11 +339,13 @@
       }
 
       tbody tr {
-        display: grid;
-        grid-template-columns: 2.05rem minmax(0, 1fr) auto;
-        gap: 0.18rem 0.32rem;
-        padding: 0.4rem 0.42rem;
-        min-height: 4.3rem;
+        padding: 0.42rem 0.38rem 0.48rem;
+        min-height: 5.5rem;
+      }
+
+      tbody tr.empty-row {
+        min-height: 2.8rem;
+        padding: 0.2rem 0.38rem;
       }
 
       tbody td {
@@ -338,112 +355,140 @@
         line-height: 1.08;
       }
 
-      tbody tr td.col-mound {
-        grid-column: 1;
-        grid-row: 1;
-        text-align: left;
-        font-size: 1.05rem;
-        font-weight: 700;
-      }
-
-      tbody tr td.col-name {
-        grid-column: 2;
-        grid-row: 1;
+      .mound-cell {
+        display: inline-block;
+        width: 2rem;
+        margin-right: 0.42rem;
         font-size: 1.12rem;
         font-weight: 700;
+        color: #dfeaf3;
+        line-height: 1.3;
+        vertical-align: top;
+      }
+
+      .data-cell {
+        display: block;
+        overflow: visible;
         min-width: 0;
       }
 
-      tbody tr td.col-gd {
-        grid-column: 3;
-        grid-row: 1;
-        text-align: right;
-        font-size: 0.86rem;
+      .shooter-name-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        min-width: 0;
+        margin-bottom: 0.18rem;
+      }
+
+      .shooter-name {
+        display: block;
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 1.34rem;
+        line-height: 1.18;
         font-weight: 700;
+        letter-spacing: 0.01em;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .shooter-grade {
+        display: inline-block;
+        flex-shrink: 0;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #dfeaf3;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .score-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 0.28rem 0.34rem;
+        align-items: end;
+      }
+
+      .score-row.three-columns {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .score-box {
+        display: flex;
+        flex-direction: column;
+        gap: 0.06rem;
+        min-width: 0;
+      }
+
+      .score-label {
+        font-size: 0.58rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .score-box strong {
+        display: block;
+        font-size: 1.38rem;
+        line-height: 1;
+        font-weight: 800;
+        color: #ffffff;
+      }
+
+      .score-box.total strong {
+        font-size: 1.62rem;
+      }
+
+      .score-box.total .score-label {
         color: #dfeaf3;
       }
 
-      tbody tr td.col-card {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #eaf6ff;
-      }
-
-      tbody tr td.col-card:nth-of-type(4) {
-        grid-column: 1 / span 2;
-        grid-row: 2;
-        text-align: left;
-      }
-
-      tbody tr td.col-card:nth-of-type(5) {
-        grid-column: 2;
-        grid-row: 2;
-        text-align: center;
-      }
-
-      tbody tr td.col-total {
-        grid-column: 3;
-        grid-row: 2;
-        font-size: 1.28rem;
-        font-weight: 800;
-        color: #ffffff;
-        text-align: right;
-      }
-
-      tbody tr td.col-card:empty {
-        color: transparent;
-      }
-
-      .name-wrap {
-        gap: 0.18rem;
-      }
-
-      .name-text {
+      .empty-row .empty-cell {
         display: block;
-        max-width: 100%;
+        min-height: 2.25rem;
+        padding-top: 0.3rem;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: #91a7b2;
+      }
+
+      .empty-row .empty-cell::before {
+        content: "—";
       }
 
       .tryout-badge {
-        font-size: 0.5em;
+        font-size: 0.52em;
       }
 
       .footer {
-        min-height: 46px;
-        padding: 0.32rem 0.8rem;
+        min-height: 42px;
+        padding: 0.28rem 0.8rem;
       }
 
       .footer img {
-        height: 24px;
+        height: 22px;
       }
     }
 
     @media (max-width: 360px) {
       .header-top img {
-        max-height: 58px;
-      }
-
-      table {
-        font-size: 0.83rem;
-      }
-
-      thead th {
-        font-size: 0.67rem;
+        max-height: 36px;
       }
 
       .meta {
         grid-template-columns: 1fr;
       }
 
-      tbody tr {
-        grid-template-columns: 1.9rem minmax(0, 1fr) auto;
+      .shooter-name {
+        font-size: 1.22rem;
       }
 
-      tbody tr td.col-name {
-        font-size: 1.05rem;
+      .score-box strong {
+        font-size: 1.26rem;
       }
 
-      tbody tr td.col-total {
-        font-size: 1.18rem;
+      .score-box.total strong {
+        font-size: 1.48rem;
       }
     }
   </style>
@@ -608,13 +653,9 @@
     function rowHtml(mound, shooter) {
       if (!shooter) {
         return `
-          <tr class="empty">
-            <td class="col-mound">${mound}</td>
-            <td class="col-name"></td>
-            <td class="col-gd"></td>
-            <td class="col-card"></td>
-            <td class="col-card"></td>
-            <td class="col-total"></td>
+          <tr class="empty-row">
+            <td class="mound-cell">${mound}</td>
+            <td class="data-cell empty-cell"></td>
           </tr>
         `;
       }
@@ -625,15 +666,34 @@
       const grade = escapeHtml(getGrade(shooter));
       const tryout = shooter.isTryout ? '<span class="tryout-badge">TRYOUT</span>' : "";
       const safeName = escapeHtml(shooter.shooterName || "");
+      const hasCard2 = Boolean(card2);
 
       return `
         <tr class="completed">
-          <td class="col-mound">${mound}</td>
-          <td class="col-name"><span class="name-wrap"><span class="name-text">${safeName}</span>${tryout}</span></td>
-          <td class="col-gd">${grade}</td>
-          <td class="col-card">${card1}</td>
-          <td class="col-card">${card2}</td>
-          <td class="col-total">${total}</td>
+          <td class="mound-cell">${mound}</td>
+          <td class="data-cell">
+            <div class="shooter-name-wrap">
+              <span class="shooter-name">${safeName}</span>
+              ${tryout}
+              <span class="shooter-grade">${grade}</span>
+            </div>
+            <div class="score-row ${hasCard2 ? 'three-columns' : ''}">
+              <div class="score-box">
+                <span class="score-label">CARD 1</span>
+                <strong>${card1 || '—'}</strong>
+              </div>
+              ${hasCard2 ? `
+                <div class="score-box">
+                  <span class="score-label">CARD 2</span>
+                  <strong>${card2}</strong>
+                </div>
+              ` : ''}
+              <div class="score-box total">
+                <span class="score-label">TOTAL</span>
+                <strong>${total || '—'}</strong>
+              </div>
+            </div>
+          </td>
         </tr>
       `;
     }
