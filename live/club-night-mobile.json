@@ -6,9 +6,10 @@
     "clubName": "Howick Rifle Club",
     "status": "OPEN"
   },
-  "generatedAt": "2026-08-13T01:32:29.929Z",
+  "generatedAt": "2026-08-13T01:34:25.363Z",
   "completedDetails": [
-    1
+    1,
+    3
   ],
   "shooters": [
     {
@@ -28,6 +29,29 @@
       ],
       "totalPoints": 99,
       "totalInners": 6
+    },
+    {
+      "personId": "cmsqu8qb10006pr10tdarl0xy",
+      "shooterName": "Stephen Petterson",
+      "participantType": "UNKNOWN",
+      "detailNumber": 3,
+      "moundNumber": 3,
+      "cardType": "SHOT_20",
+      "isTryout": false,
+      "cardScores": [
+        {
+          "cardNumber": 1,
+          "wholePoints": 99,
+          "inners": 5
+        },
+        {
+          "cardNumber": 2,
+          "wholePoints": 100,
+          "inners": 6
+        }
+      ],
+      "totalPoints": 199,
+      "totalInners": 11
     }
   ]
 }
