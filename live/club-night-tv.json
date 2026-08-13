@@ -1,57 +1,33 @@
 {
   "event": {
-    "id": "cmsmjqxdj0001mr10wvmsyke6",
-    "title": "Club Night 2026-08-10",
-    "date": "2026-08-10T01:22:20.407Z",
+    "id": "cmsqu9m3m000gpr100i7q67oa",
+    "title": "Club Night 2026-08-13",
+    "date": "2026-08-13T01:27:53.121Z",
     "clubName": "Howick Rifle Club",
     "status": "OPEN"
   },
-  "generatedAt": "2026-08-10T01:40:45.312Z",
+  "generatedAt": "2026-08-13T01:32:29.929Z",
   "completedDetails": [
-    1,
-    2
+    1
   ],
   "shooters": [
     {
-      "personId": "cmsflbfc0001dit75fit5y4b2",
-      "shooterName": "Sean McCabe",
-      "participantType": "MEMBER",
+      "personId": "cmsqu8qb10006pr10tdarl0xy",
+      "shooterName": "Stephen Petterson",
+      "participantType": "UNKNOWN",
       "detailNumber": 1,
-      "moundNumber": 2,
+      "moundNumber": 3,
       "cardType": "SHOT_10",
       "isTryout": false,
       "cardScores": [
         {
           "cardNumber": 1,
           "wholePoints": 99,
-          "inners": 3
+          "inners": 6
         }
       ],
       "totalPoints": 99,
-      "totalInners": 3
-    },
-    {
-      "personId": "cmsflbfc0001dit75fit5y4b2",
-      "shooterName": "Sean McCabe",
-      "participantType": "MEMBER",
-      "detailNumber": 2,
-      "moundNumber": 2,
-      "cardType": "SHOT_20",
-      "isTryout": false,
-      "cardScores": [
-        {
-          "cardNumber": 1,
-          "wholePoints": 100,
-          "inners": 6
-        },
-        {
-          "cardNumber": 2,
-          "wholePoints": 100,
-          "inners": 7
-        }
-      ],
-      "totalPoints": 200,
-      "totalInners": 13
+      "totalInners": 6
     }
   ]
 }
