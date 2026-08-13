@@ -40,6 +40,7 @@
 
     .app {
       max-width: 500px;
+      width: 100%;
       margin: 0 auto;
       padding: 0.65rem 0.55rem 0.9rem;
     }
@@ -194,10 +195,10 @@
 
     tbody td {
       border-bottom: 1px solid #1f2c31;
-      padding: 0.29rem 0.15rem;
+      padding: 0.34rem 0.15rem;
       color: #f4f9fc;
-      height: 1.9rem;
-      line-height: 1.06;
+      height: 2.3rem;
+      line-height: 1.1;
       vertical-align: middle;
     }
 
@@ -213,9 +214,9 @@
       color: #708792;
     }
 
-    .col-mound { width: 12%; text-align: center; }
+    .col-mound { width: 12%; text-align: center; font-weight: 700; color: #dfeaf3; }
     .col-name { width: 39%; }
-    .col-gd { width: 8%; text-align: center; }
+    .col-gd { width: 8%; text-align: center; color: #dfeaf3; }
     .col-card { width: 13%; text-align: center; }
     .col-total { width: 15%; text-align: center; font-weight: 700; }
 
@@ -266,6 +267,156 @@
       opacity: 0.94;
     }
 
+    @media (max-width: 500px) {
+      .app {
+        padding: 0.45rem 0.38rem 0.8rem;
+      }
+
+      .header {
+        padding: 0.42rem 0.35rem 0.52rem;
+      }
+
+      .header-top img {
+        width: min(80vw, 270px);
+        max-height: 56px;
+      }
+
+      .meta {
+        grid-template-columns: 1fr;
+        gap: 0.16rem 0.4rem;
+        font-size: 0.82rem;
+      }
+
+      .meta-k {
+        font-size: 0.7rem;
+      }
+
+      .detail-sticky {
+        margin-bottom: 0.5rem;
+        padding: 0.42rem 0.4rem 0.46rem;
+      }
+
+      .detail-label {
+        font-size: 0.72rem;
+      }
+
+      .detail-btn {
+        min-width: 52px;
+        padding: 0.22rem 0.42rem;
+        font-size: 0.8rem;
+      }
+
+      .board-title {
+        font-size: 0.82rem;
+        padding: 0.35rem 0.45rem;
+      }
+
+      thead {
+        display: none;
+      }
+
+      table,
+      tbody,
+      tbody tr,
+      tbody td {
+        display: block;
+        width: 100%;
+      }
+
+      tbody tr {
+        display: grid;
+        grid-template-columns: 2.05rem minmax(0, 1fr) auto;
+        gap: 0.18rem 0.32rem;
+        padding: 0.4rem 0.42rem;
+        min-height: 4.3rem;
+      }
+
+      tbody td {
+        border-bottom: none;
+        padding: 0;
+        height: auto;
+        line-height: 1.08;
+      }
+
+      tbody tr td.col-mound {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: left;
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+
+      tbody tr td.col-name {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 1.12rem;
+        font-weight: 700;
+        min-width: 0;
+      }
+
+      tbody tr td.col-gd {
+        grid-column: 3;
+        grid-row: 1;
+        text-align: right;
+        font-size: 0.86rem;
+        font-weight: 700;
+        color: #dfeaf3;
+      }
+
+      tbody tr td.col-card {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #eaf6ff;
+      }
+
+      tbody tr td.col-card:nth-of-type(4) {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        text-align: left;
+      }
+
+      tbody tr td.col-card:nth-of-type(5) {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: center;
+      }
+
+      tbody tr td.col-total {
+        grid-column: 3;
+        grid-row: 2;
+        font-size: 1.28rem;
+        font-weight: 800;
+        color: #ffffff;
+        text-align: right;
+      }
+
+      tbody tr td.col-card:empty {
+        color: transparent;
+      }
+
+      .name-wrap {
+        gap: 0.18rem;
+      }
+
+      .name-text {
+        display: block;
+        max-width: 100%;
+      }
+
+      .tryout-badge {
+        font-size: 0.5em;
+      }
+
+      .footer {
+        min-height: 46px;
+        padding: 0.32rem 0.8rem;
+      }
+
+      .footer img {
+        height: 24px;
+      }
+    }
+
     @media (max-width: 360px) {
       .header-top img {
         max-height: 58px;
@@ -281,6 +432,18 @@
 
       .meta {
         grid-template-columns: 1fr;
+      }
+
+      tbody tr {
+        grid-template-columns: 1.9rem minmax(0, 1fr) auto;
+      }
+
+      tbody tr td.col-name {
+        font-size: 1.05rem;
+      }
+
+      tbody tr td.col-total {
+        font-size: 1.18rem;
       }
     }
   </style>
