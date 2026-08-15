@@ -1,38 +1,51 @@
 {
   "event": {
-    "id": "cmstooxwk0028pr10c5xrsrct",
+    "id": "cmstz6wkj0032pr10iyredmd6",
     "title": "Club Night 2026-08-15",
-    "date": "2026-08-15T01:15:09.091Z",
+    "date": "2026-08-15T06:09:03.331Z",
     "clubName": "Howick Rifle Club",
     "status": "OPEN"
   },
-  "generatedAt": "2026-08-15T01:16:51.045Z",
+  "generatedAt": "2026-08-15T06:11:15.181Z",
   "completedDetails": [
-    3
+    1
   ],
   "shooters": [
     {
-      "personId": "cmsmmgrnv0000lk10b6qh2y76",
-      "shooterName": "Sean McCabe",
+      "personId": "cmsqu8qb2000cpr10si8mfqgt",
+      "shooterName": "James Gray",
       "participantType": "UNKNOWN",
-      "detailNumber": 3,
-      "moundNumber": 7,
-      "cardType": "SHOT_20",
+      "detailNumber": 1,
+      "moundNumber": 3,
+      "cardType": "SHOT_10",
       "isTryout": false,
       "cardScores": [
         {
           "cardNumber": 1,
-          "wholePoints": 98,
-          "inners": 5
-        },
+          "wholePoints": 99,
+          "inners": 4
+        }
+      ],
+      "totalPoints": 99,
+      "totalInners": 4
+    },
+    {
+      "personId": "cmsqu8qb00003pr10ab7qjl0x",
+      "shooterName": "Emmily MacLean",
+      "participantType": "UNKNOWN",
+      "detailNumber": 1,
+      "moundNumber": 6,
+      "cardType": "SHOT_10",
+      "isTryout": false,
+      "cardScores": [
         {
-          "cardNumber": 2,
-          "wholePoints": 100,
+          "cardNumber": 1,
+          "wholePoints": 97,
           "inners": 5
         }
       ],
-      "totalPoints": 198,
-      "totalInners": 10
+      "totalPoints": 97,
+      "totalInners": 5
     }
   ]
 }
