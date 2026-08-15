@@ -1,76 +1,38 @@
 {
   "event": {
-    "id": "cmsqu9m3m000gpr100i7q67oa",
-    "title": "Club Night 2026-08-13",
-    "date": "2026-08-13T01:27:53.121Z",
+    "id": "cmstooxwk0028pr10c5xrsrct",
+    "title": "Club Night 2026-08-15",
+    "date": "2026-08-15T01:15:09.091Z",
     "clubName": "Howick Rifle Club",
     "status": "OPEN"
   },
-  "generatedAt": "2026-08-13T23:17:19.715Z",
+  "generatedAt": "2026-08-15T01:16:51.045Z",
   "completedDetails": [
-    1,
-    3,
-    4
+    3
   ],
   "shooters": [
     {
-      "personId": "cmsqu8qb10006pr10tdarl0xy",
-      "shooterName": "Stephen Petterson",
-      "participantType": "UNKNOWN",
-      "detailNumber": 1,
-      "moundNumber": 3,
-      "cardType": "SHOT_10",
-      "isTryout": false,
-      "cardScores": [
-        {
-          "cardNumber": 1,
-          "wholePoints": 99,
-          "inners": 6
-        }
-      ],
-      "totalPoints": 99,
-      "totalInners": 6
-    },
-    {
-      "personId": "cmsqu8qb10006pr10tdarl0xy",
-      "shooterName": "Stephen Petterson",
+      "personId": "cmsmmgrnv0000lk10b6qh2y76",
+      "shooterName": "Sean McCabe",
       "participantType": "UNKNOWN",
       "detailNumber": 3,
-      "moundNumber": 3,
+      "moundNumber": 7,
       "cardType": "SHOT_20",
       "isTryout": false,
       "cardScores": [
         {
           "cardNumber": 1,
-          "wholePoints": 99,
+          "wholePoints": 98,
           "inners": 5
         },
         {
           "cardNumber": 2,
           "wholePoints": 100,
-          "inners": 6
+          "inners": 5
         }
       ],
-      "totalPoints": 199,
-      "totalInners": 11
-    },
-    {
-      "personId": "cmsqu8qb00003pr10ab7qjl0x",
-      "shooterName": "Emmily MacLean",
-      "participantType": "UNKNOWN",
-      "detailNumber": 4,
-      "moundNumber": 8,
-      "cardType": "SHOT_10",
-      "isTryout": false,
-      "cardScores": [
-        {
-          "cardNumber": 1,
-          "wholePoints": 99,
-          "inners": 9
-        }
-      ],
-      "totalPoints": 99,
-      "totalInners": 9
+      "totalPoints": 198,
+      "totalInners": 10
     }
   ]
 }
