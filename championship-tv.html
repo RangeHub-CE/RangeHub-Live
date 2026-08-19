@@ -19,6 +19,13 @@
       --gold: #ffd479;
       --silver: #d6e2ea;
       --bronze: #e0a878;
+
+      /* Row density budget. JS reads these to work out how many rows fit a screen. */
+      --row-h-spacious: 70px;
+      --row-h-medium: 58px;
+      --row-h-compact: 48px;
+      --head-h: 34px;
+      --max-rows: 16;
     }
 
     * { box-sizing: border-box; }
@@ -41,7 +48,7 @@
     .app {
       padding: 1rem 1.4rem 0.7rem;
       display: grid;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto minmax(0, 1fr);
       gap: 0.7rem;
       min-height: 0;
     }
@@ -166,12 +173,10 @@
       border-radius: 8px;
       overflow: hidden;
       min-height: 0;
+      max-height: 100%;
+      display: block;
+      align-self: start;
     }
-
-    /* Row density is chosen per result view so a normal grade fits one screen. */
-    .board.d-spacious { --row-h: 64px; --row-font: 2.2rem; --head-h: 40px; --head-font: 1.15rem; }
-    .board.d-medium   { --row-h: 56px; --row-font: 2rem; --head-h: 38px; --head-font: 1.1rem; }
-    .board.d-compact  { --row-h: 46px; --row-font: 1.7rem; --head-h: 34px; --head-font: 1rem; }
 
     table {
       width: 100%;
@@ -183,26 +188,48 @@
       text-transform: uppercase;
       font-family: "Oswald", sans-serif;
       letter-spacing: 0.08em;
-      font-size: var(--head-font, 1.1rem);
-      height: var(--head-h, 38px);
+      font-size: clamp(0.78rem, 0.95vw, 1.05rem);
       background: #1a1b18;
       color: #e7d3bd;
       border-bottom: 1px solid #3a3128;
-      padding: 0 0.55rem;
+      height: var(--head-h);
+      padding: 0 0.5rem;
+      line-height: 1;
       text-align: left;
     }
 
     tbody td {
       border-bottom: 1px solid #1f2c31;
-      padding: 0 0.55rem;
-      height: var(--row-h, 48px);
+      padding: 0 0.5rem;
       color: #f4f9fc;
       vertical-align: middle;
       line-height: 1.05;
-      font-size: var(--row-font, 1.8rem);
+      height: var(--row-h);
+      font-size: var(--row-font);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    /* Density is driven by how many rows the current view puts on screen. */
+    .board {
+      --row-h: var(--row-h-medium);
+      --row-font: clamp(1.2rem, 1.6vw, 1.9rem);
+    }
+
+    .board.d-spacious {
+      --row-h: var(--row-h-spacious);
+      --row-font: clamp(1.3rem, 1.85vw, 2.15rem);
+    }
+
+    .board.d-medium {
+      --row-h: var(--row-h-medium);
+      --row-font: clamp(1.2rem, 1.6vw, 1.9rem);
+    }
+
+    .board.d-compact {
+      --row-h: var(--row-h-compact);
+      --row-font: clamp(1.15rem, 1.35vw, 1.6rem);
     }
 
     tbody tr:nth-child(even) { background: rgba(255, 255, 255, 0.022); }
@@ -211,11 +238,18 @@
 
     .c-rank { width: 8%; text-align: center; font-family: "Oswald", sans-serif; font-weight: 600; }
     .c-name { width: 30%; font-weight: 600; }
-    .c-club { width: 20%; color: #c3d2da; font-size: 0.84em; }
-    .c-grade { width: 11%; text-align: center; color: #c3d2da; font-size: 0.84em; }
-    .c-sub { width: 10%; text-align: center; color: #d7c4ad; font-size: 0.86em; }
-    .c-score { width: 13%; text-align: right; font-weight: 700; font-family: "Oswald", sans-serif; font-size: 1.06em; }
-    .c-inners { width: 10%; text-align: right; color: #d7c4ad; font-family: "Oswald", sans-serif; font-size: 0.88em; }
+    .c-club { width: 20%; color: #c3d2da; }
+    .c-grade { width: 11%; text-align: center; color: #c3d2da; }
+    .c-sub { width: 10%; text-align: center; color: #d7c4ad; }
+    .c-score { width: 13%; text-align: right; font-weight: 700; font-family: "Oswald", sans-serif; }
+    .c-inners { width: 10%; text-align: right; color: #d7c4ad; font-family: "Oswald", sans-serif; }
+
+    /* Secondary columns carry the density reduction; TOTAL / SCORE stays the largest value on screen. */
+    tbody td.c-club,
+    tbody td.c-grade,
+    tbody td.c-inners { font-size: calc(var(--row-font) * 0.84); }
+    tbody td.c-sub { font-size: calc(var(--row-font) * 0.88); }
+    tbody td.c-score { font-size: calc(var(--row-font) * 1.06); }
 
     .rank-1 { color: var(--gold); }
     .rank-2 { color: var(--silver); }
@@ -265,11 +299,15 @@
     }
 
     @media (max-height: 800px) {
+      :root {
+        --row-h-spacious: 52px;
+        --row-h-medium: 44px;
+        --row-h-compact: 38px;
+        --head-h: 28px;
+      }
       .app { padding: 0.6rem 1rem 0.5rem; gap: 0.5rem; }
       .club-brand img { max-height: 52px; }
-      .board.d-spacious { --row-h: 52px; --row-font: 1.7rem; --head-h: 32px; --head-font: 1rem; }
-      .board.d-medium   { --row-h: 40px; --row-font: 1.45rem; --head-h: 30px; --head-font: 0.95rem; }
-      .board.d-compact  { --row-h: 34px; --row-font: 1.25rem; --head-h: 28px; --head-font: 0.9rem; }
+      tbody td { padding: 0 0.45rem; }
       .footer { min-height: 42px; }
       .footer img { height: 24px; }
     }
@@ -300,7 +338,7 @@
       </div>
     </section>
 
-    <section class="board" id="board">
+    <section class="board">
       <table id="results-table">
         <thead id="results-head"></thead>
         <tbody id="results-body"></tbody>
@@ -321,12 +359,6 @@
       var REFRESH_MS = 10000;
       var SCREEN_MS = 15000;
       var MAX_SUBTOTAL_COLUMNS = 2;
-      var MAX_ROWS_PER_PAGE = 16;
-      var DENSITY_TIERS = [
-        { name: 'spacious', upTo: 8 },
-        { name: 'medium', upTo: 12 },
-        { name: 'compact', upTo: MAX_ROWS_PER_PAGE }
-      ];
 
       var params = new URLSearchParams(window.location.search);
       var eventCode = (params.get('event') || DEFAULT_EVENT_CODE).trim();
@@ -349,41 +381,58 @@
         head: document.getElementById('results-head'),
         body: document.getElementById('results-body'),
         table: document.getElementById('results-table'),
-        board: document.getElementById('board'),
-        empty: document.getElementById('empty-state')
+        empty: document.getElementById('empty-state'),
+        app: document.querySelector('.app'),
+        board: document.querySelector('.board'),
+        footer: document.querySelector('.footer')
       };
 
-      // The board is a fixed-height grid track, so its capacity can be measured before rendering rows.
-      function densityMetrics(name) {
-        var previous = el.board.className;
-        el.board.className = 'board d-' + name;
-        var style = getComputedStyle(el.board);
-        var metrics = {
-          row: parseFloat(style.getPropertyValue('--row-h')) || 48,
-          head: parseFloat(style.getPropertyValue('--head-h')) || 38
+      var DENSITIES = ['spacious', 'medium', 'compact'];
+
+      function cssPixels(styles, name, fallback) {
+        var value = parseFloat(styles.getPropertyValue(name));
+        return isFinite(value) && value > 0 ? value : fallback;
+      }
+
+      // Everything below is measured, never assumed, so 1080p and 768p both stay scroll-free.
+      function layoutMetrics() {
+        var styles = getComputedStyle(document.documentElement);
+        var appStyles = getComputedStyle(el.app);
+        var boardTop = el.board.getBoundingClientRect().top;
+        var footerHeight = el.footer.getBoundingClientRect().height;
+        var paddingBottom = parseFloat(appStyles.paddingBottom) || 0;
+        var boardChrome = 4; // board border + rounding allowance
+
+        var available = window.innerHeight - footerHeight - paddingBottom - boardTop - boardChrome;
+
+        return {
+          available: Math.max(available, 120),
+          headHeight: cssPixels(styles, '--head-h', 34),
+          maxRows: Math.max(Math.round(cssPixels(styles, '--max-rows', 16)), 1),
+          rowHeight: {
+            spacious: cssPixels(styles, '--row-h-spacious', 64),
+            medium: cssPixels(styles, '--row-h-medium', 54),
+            compact: cssPixels(styles, '--row-h-compact', 46)
+          }
         };
-        el.board.className = previous;
-        return metrics;
       }
 
-      function capacityFor(name) {
-        var metrics = densityMetrics(name);
-        var available = el.board.clientHeight - metrics.head;
-        return Math.max(Math.floor(available / metrics.row), 1);
+      function pageCapacity(metrics) {
+        var usable = metrics.available - metrics.headHeight;
+        var fits = Math.floor(usable / metrics.rowHeight.compact);
+        return Math.max(Math.min(fits, metrics.maxRows), 4);
       }
 
-      // Smaller fields get roomier rows; only genuinely large fields paginate.
-      function planView(rowCount) {
-        for (var index = 0; index < DENSITY_TIERS.length; index += 1) {
-          var tier = DENSITY_TIERS[index];
-          if (rowCount <= tier.upTo && rowCount <= capacityFor(tier.name)) {
-            return { density: tier.name, perPage: Math.max(rowCount, 1) };
+      // Preferred density comes from the row count; it is stepped down only if it would not fit.
+      function densityFor(count, metrics) {
+        var preferred = count <= 8 ? 0 : count <= 12 ? 1 : 2;
+        for (var index = preferred; index < DENSITIES.length; index += 1) {
+          var name = DENSITIES[index];
+          if (count * metrics.rowHeight[name] + metrics.headHeight <= metrics.available) {
+            return name;
           }
         }
-        return {
-          density: 'compact',
-          perPage: Math.min(MAX_ROWS_PER_PAGE, capacityFor('compact'))
-        };
+        return 'compact';
       }
 
       function shortCategoryName(name) {
@@ -433,19 +482,20 @@
       }
 
       function buildScreens(views) {
+        var capacity = pageCapacity(layoutMetrics());
         var list = [];
 
         views.forEach(function (view) {
-          var plan = planView(view.rows.length);
-          var pageCount = Math.max(Math.ceil(view.rows.length / plan.perPage), 1);
+          var pageCount = Math.max(Math.ceil(view.rows.length / capacity), 1);
+          // Spread rows evenly so a 17-row view becomes 9 + 8 rather than 16 + 1.
+          var perPage = Math.ceil(view.rows.length / pageCount) || 1;
           for (var page = 0; page < pageCount; page += 1) {
             list.push({
               key: view.key + '#' + page,
               view: view,
-              density: plan.density,
               page: page,
               pageCount: pageCount,
-              rows: view.rows.slice(page * plan.perPage, (page + 1) * plan.perPage)
+              rows: view.rows.slice(page * perPage, (page + 1) * perPage)
             });
           }
         });
@@ -488,6 +538,7 @@
         var screen = screens[screenIndex];
 
         if (!screen) {
+          el.board.className = 'board';
           el.table.style.display = 'none';
           el.empty.style.display = 'block';
           el.viewTitle.textContent = '-';
@@ -498,8 +549,10 @@
 
         el.table.style.display = '';
         el.empty.style.display = 'none';
-        el.board.className = 'board d-' + screen.density;
         screenKey = screen.key;
+
+        var density = densityFor(screen.rows.length, layoutMetrics());
+        el.board.className = 'board d-' + density;
 
         var subtotals = subtotalColumns(payload, screen.view.category);
 

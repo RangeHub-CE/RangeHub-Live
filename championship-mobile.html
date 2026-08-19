@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Howick Rifle Club - Championship Mobile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050607;
+      --panel: #101518;
+      --panel-2: #151a1d;
+      --line: #27343a;
+      --text: #f3f8fb;
+      --muted: #9bb0bb;
+      --soft: #c6d5dc;
+      --accent: #ff7a00;
+      --accent-soft: #3a2409;
+      --warn: #ffcc70;
+      --danger: #ff8f8f;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 122, 0, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 90% 8%, rgba(255, 122, 0, 0.06) 0%, transparent 28%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Rajdhani", "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .app {
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0.55rem 0.55rem 0.75rem;
+      min-width: 0;
+    }
+
+    .header {
+      background: #050607;
+      border-bottom: 1px solid var(--line);
+      padding: 0.4rem 0.15rem 0.48rem;
+      margin-bottom: 0.48rem;
+    }
+
+    .brand-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 0.58rem;
+      min-width: 0;
+    }
+
+    .brand-row img {
+      width: 92px;
+      max-height: 42px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .title-block { min-width: 0; }
+
+    .event-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.06rem;
+      font-weight: 600;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      overflow-wrap: anywhere;
+    }
+
+    .event-meta {
+      color: var(--muted);
+      font-family: "Oswald", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.25;
+      margin-top: 0.12rem;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+      min-width: 0;
+    }
+
+    .state-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: #ffd3a6;
+      border-radius: 5px;
+      padding: 0.06rem 0.42rem;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .published {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .warning {
+      display: none;
+      color: var(--warn);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 0.18rem;
+    }
+
+    .selector-panel {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(180deg, rgba(5, 6, 7, 0.98) 0%, rgba(5, 6, 7, 0.94) 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 0.42rem 0 0.46rem;
+      backdrop-filter: blur(2px);
+      margin-bottom: 0.44rem;
+    }
+
+    .selector-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+      align-items: center;
+      margin-bottom: 0.32rem;
+    }
+
+    .selector-row:last-child { margin-bottom: 0; }
+
+    .selector-label {
+      flex: 0 0 4.1rem;
+      color: var(--muted);
+      font-family: "Oswald", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #category-buttons,
+    #grade-buttons {
+      display: flex;
+      flex: 1 1 0;
+      flex-wrap: wrap;
+      gap: 0.32rem;
+      min-width: 0;
+    }
+
+    .chip {
+      border: 1px solid #314047;
+      background: #101518;
+      color: #d6e3ea;
+      border-radius: 6px;
+      min-height: 28px;
+      padding: 0.16rem 0.5rem;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chip.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: #ffffff;
+      box-shadow: inset 0 0 0 1px rgba(255, 122, 0, 0.45);
+    }
+
+    .list {
+      display: grid;
+      gap: 0.34rem;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 2.05rem minmax(0, 1fr) auto;
+      gap: 0.44rem;
+      align-items: start;
+      background: linear-gradient(180deg, #11181c 0%, #0f1518 100%);
+      border: 1px solid #1f2c31;
+      border-radius: 7px;
+      padding: 0.42rem 0.48rem;
+      min-width: 0;
+    }
+
+    .row:nth-child(even) { background: rgba(255, 255, 255, 0.025); }
+    .row.incomplete { opacity: 0.72; }
+
+    .rank {
+      font-family: "Oswald", sans-serif;
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      padding-top: 0.08rem;
+    }
+
+    .shooter {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .name {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.05;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .secondary {
+      margin-top: 0.12rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+
+    .subtotals {
+      color: #d9c8b5;
+      font-size: 0.78rem;
+      line-height: 1.18;
+      margin-top: 0.16rem;
+      overflow-wrap: anywhere;
+    }
+
+    .score {
+      min-width: 4.2rem;
+      text-align: right;
+      font-family: "Oswald", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.05;
+      white-space: nowrap;
+    }
+
+    .score-label {
+      display: block;
+      margin-top: 0.12rem;
+      color: var(--muted);
+      font-family: "Rajdhani", sans-serif;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .incomplete .score {
+      color: var(--warn);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+    }
+
+    .empty {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 1rem;
+      color: var(--muted);
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer {
+      background: #000000;
+      border-top: 1px solid #1e2528;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.48rem 0.5rem 0.62rem;
+      margin-top: 0.7rem;
+    }
+
+    .footer img {
+      height: 30px;
+      width: auto;
+      max-width: min(88vw, 240px);
+      opacity: 0.92;
+      display: block;
+    }
+
+    @media (max-width: 360px) {
+      .app { padding-left: 0.42rem; padding-right: 0.42rem; }
+      .brand-row img { width: 80px; }
+      .event-title { font-size: 0.96rem; }
+      .selector-label { flex-basis: 3.55rem; }
+      .chip { font-size: 0.7rem; padding-left: 0.42rem; padding-right: 0.42rem; }
+      .row { grid-template-columns: 1.75rem minmax(0, 1fr) auto; gap: 0.34rem; padding: 0.38rem 0.4rem; }
+      .score { min-width: 3.75rem; font-size: 1rem; }
+      .name { font-size: 0.94rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="brand-row">
+        <img src="assets/hrc-logo.svg" alt="Howick Rifle Club logo">
+        <div class="title-block">
+          <div id="event-title" class="event-title">Championship Results</div>
+          <div id="event-meta" class="event-meta">Waiting for results...</div>
+        </div>
+      </div>
+      <div class="status-row">
+        <span id="state-badge" class="state-badge">--</span>
+        <span id="published-label" class="published">Published: -</span>
+      </div>
+      <div id="warning-label" class="warning">Connection warning: showing last published results</div>
+    </header>
+
+    <section class="selector-panel">
+      <div class="selector-row">
+        <span class="selector-label">Result</span>
+        <span id="category-buttons"></span>
+      </div>
+      <div class="selector-row">
+        <span class="selector-label">Grade</span>
+        <span id="grade-buttons"></span>
+      </div>
+    </section>
+
+    <section id="results-list" class="list"></section>
+    <div id="empty-state" class="empty" style="display:none">Waiting for published results</div>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/rangehub-logo.svg" alt="RangeHub">
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var DEFAULT_EVENT_CODE = 'championship-def-20260819041208088';
+      var REFRESH_MS = 10000;
+
+      var params = new URLSearchParams(window.location.search);
+      var eventCode = (params.get('event') || DEFAULT_EVENT_CODE).trim();
+      var dataUrl = 'live/championships/' + encodeURIComponent(eventCode) + '/results.json';
+
+      var payload = null;
+      var selectedCategoryKey = null;
+      var selectedGrade = 'ALL';
+
+      var el = {
+        title: document.getElementById('event-title'),
+        meta: document.getElementById('event-meta'),
+        state: document.getElementById('state-badge'),
+        published: document.getElementById('published-label'),
+        warning: document.getElementById('warning-label'),
+        categories: document.getElementById('category-buttons'),
+        grades: document.getElementById('grade-buttons'),
+        list: document.getElementById('results-list'),
+        empty: document.getElementById('empty-state')
+      };
+
+      function categoryLabel(category) {
+        if (!category) return '';
+        if (category.resultType === 'OVERALL' || category.key === 'OVERALL') return 'OVERALL';
+        var shots = category.shotCount || (category.name && String(category.name).match(/\d+/) || [])[0];
+        return shots ? shots + ' SHOT' : String(category.name || '').toUpperCase();
+      }
+
+      function courseOrder(data) {
+        var map = new Map();
+        var stages = data && data.courseOfFire && Array.isArray(data.courseOfFire.stages)
+          ? data.courseOfFire.stages
+          : [];
+        stages.forEach(function (stage, index) { map.set(stage.key, index + 1); });
+        return map;
+      }
+
+      function categorySort(order) {
+        return function (a, b) {
+          if (a.key === b.key) return 0;
+          if (a.resultType === 'OVERALL' || a.key === 'OVERALL') return -1;
+          if (b.resultType === 'OVERALL' || b.key === 'OVERALL') return 1;
+          var left = order.has(a.key) ? order.get(a.key) : 999;
+          var right = order.has(b.key) ? order.get(b.key) : 999;
+          return left - right || String(a.name).localeCompare(String(b.name));
+        };
+      }
+
+      function categories(data) {
+        return Array.isArray(data && data.resultCategories)
+          ? data.resultCategories.slice().sort(categorySort(courseOrder(data)))
+          : [];
+      }
+
+      function selectedCategory() {
+        var list = categories(payload);
+        return list.find(function (category) { return category.key === selectedCategoryKey; }) || list[0] || null;
+      }
+
+      function gradeOptions(category) {
+        var options = [{ grade: 'ALL', label: 'ALL' }];
+        if (!category || !Array.isArray(category.gradeRankings)) return options;
+        category.gradeRankings.forEach(function (ranking) {
+          if (Array.isArray(ranking.rankings) && ranking.rankings.length > 0) {
+            options.push({ grade: ranking.grade, label: ranking.gradeLabel || ranking.grade });
+          }
+        });
+        return options;
+      }
+
+      function rowsFor(category) {
+        if (!category) return [];
+        if (selectedGrade === 'ALL') return Array.isArray(category.rankings) ? category.rankings : [];
+        var gradeView = (category.gradeRankings || []).find(function (ranking) { return ranking.grade === selectedGrade; });
+        return gradeView && Array.isArray(gradeView.rankings) ? gradeView.rankings : [];
+      }
+
+      function formatTime(value) {
+        if (!value) return '-';
+        var date = new Date(value);
+        if (isNaN(date.getTime())) return '-';
+        return date.toLocaleTimeString('en-NZ', { hour: '2-digit', minute: '2-digit' }) +
+          ' · ' + date.toLocaleDateString('en-NZ', { day: 'numeric', month: 'short' });
+      }
+
+      function scoreText(points, inners) {
+        if (points === null || points === undefined) return 'INCOMPLETE';
+        if (inners === null || inners === undefined) return String(points);
+        return String(points) + '.' + String(inners).padStart(2, '0');
+      }
+
+      function safeText(value) {
+        return value === null || value === undefined || value === '' ? '-' : String(value);
+      }
+
+      function setButton(container, text, active, onClick) {
+        var button = document.createElement('button');
+        button.className = 'chip' + (active ? ' active' : '');
+        button.type = 'button';
+        button.textContent = text;
+        button.addEventListener('click', onClick);
+        container.appendChild(button);
+      }
+
+      function renderHeader(data) {
+        var event = data.event || {};
+        var publication = data.publication || {};
+        el.title.textContent = event.title || 'Championship Results';
+        el.meta.textContent = [event.format, event.competitionType].filter(Boolean).join(' · ');
+        el.state.textContent = event.status || '--';
+        el.published.textContent = 'Published: ' + formatTime(publication.publishedAt || publication.generatedAt);
+      }
+
+      function ensureSelection(data) {
+        var list = categories(data);
+        if (list.length === 0) {
+          selectedCategoryKey = null;
+          selectedGrade = 'ALL';
+          return;
+        }
+
+        var hasSelected = list.some(function (category) { return category.key === selectedCategoryKey; });
+        if (!hasSelected) {
+          var overall = list.find(function (category) { return category.resultType === 'OVERALL' || category.key === 'OVERALL'; });
+          selectedCategoryKey = (overall || list[0]).key;
+        }
+
+        var grades = gradeOptions(selectedCategory());
+        if (!grades.some(function (option) { return option.grade === selectedGrade; })) {
+          selectedGrade = 'ALL';
+        }
+      }
+
+      function renderSelectors() {
+        var current = selectedCategory();
+        el.categories.innerHTML = '';
+        categories(payload).forEach(function (category) {
+          setButton(el.categories, categoryLabel(category), category.key === selectedCategoryKey, function () {
+            selectedCategoryKey = category.key;
+            selectedGrade = 'ALL';
+            render();
+          });
+        });
+
+        el.grades.innerHTML = '';
+        gradeOptions(current).forEach(function (option) {
+          setButton(el.grades, option.label, option.grade === selectedGrade, function () {
+            selectedGrade = option.grade;
+            render();
+          });
+        });
+      }
+
+      function rankText(row) {
+        if (row.rank === null || row.rank === undefined) return '–';
+        return String(row.rank) + (row.tied ? '=' : '');
+      }
+
+      function subtotalLine(row) {
+        if (!Array.isArray(row.subtotals) || row.subtotals.length === 0) return '';
+        return row.subtotals.map(function (subtotal) {
+          var label = String(subtotal.label || '').replace(/ Match$/i, '');
+          return label + ' ' + scoreText(subtotal.points, subtotal.inners);
+        }).join('  •  ');
+      }
+
+      function renderRow(row, isOverall) {
+        var ranked = row.rank !== null && row.rank !== undefined;
+        var item = document.createElement('div');
+        item.className = 'row' + (ranked ? '' : ' incomplete');
+
+        var rank = document.createElement('div');
+        rank.className = 'rank';
+        rank.textContent = rankText(row);
+        item.appendChild(rank);
+
+        var shooter = document.createElement('div');
+        shooter.className = 'shooter';
+
+        var name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = safeText(row.shooterName);
+        shooter.appendChild(name);
+
+        var secondary = document.createElement('div');
+        secondary.className = 'secondary';
+        secondary.textContent = [row.homeClub, row.gradeLabel || row.grade].filter(Boolean).join(' · ');
+        shooter.appendChild(secondary);
+
+        if (isOverall) {
+          var subtotals = subtotalLine(row);
+          if (subtotals) {
+            var sub = document.createElement('div');
+            sub.className = 'subtotals';
+            sub.textContent = subtotals;
+            shooter.appendChild(sub);
+          }
+        }
+
+        item.appendChild(shooter);
+
+        var score = document.createElement('div');
+        score.className = 'score';
+        score.textContent = ranked ? scoreText(row.points, row.inners) : String(row.status || 'INCOMPLETE');
+        if (ranked) {
+          var label = document.createElement('span');
+          label.className = 'score-label';
+          label.textContent = 'Score';
+          score.appendChild(label);
+        }
+        item.appendChild(score);
+
+        return item;
+      }
+
+      function renderResults() {
+        var category = selectedCategory();
+        var rows = rowsFor(category);
+        var isOverall = category && (category.resultType === 'OVERALL' || category.key === 'OVERALL');
+
+        el.list.innerHTML = '';
+        if (!category || rows.length === 0) {
+          el.empty.style.display = 'block';
+          el.empty.textContent = category ? 'No results in this view' : 'Waiting for published results';
+          return;
+        }
+
+        el.empty.style.display = 'none';
+        rows.forEach(function (row) {
+          el.list.appendChild(renderRow(row, isOverall));
+        });
+      }
+
+      function render() {
+        if (!payload) {
+          el.empty.style.display = 'block';
+          el.empty.textContent = 'Waiting for published results';
+          return;
+        }
+        ensureSelection(payload);
+        renderHeader(payload);
+        renderSelectors();
+        renderResults();
+      }
+
+      function loadResults() {
+        var url = dataUrl + '?_=' + Date.now();
+        return fetch(url, { cache: 'no-store' })
+          .then(function (response) {
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            return response.json();
+          })
+          .then(function (data) {
+            payload = data;
+            el.warning.style.display = 'none';
+            render();
+          })
+          .catch(function (error) {
+            console.error('Failed to load championship results:', error);
+            if (payload) {
+              el.warning.style.display = 'block';
+              render();
+              return;
+            }
+            el.empty.style.display = 'block';
+            el.empty.textContent = 'Unable to load published results';
+          });
+      }
+
+      loadResults();
+      window.setInterval(loadResults, REFRESH_MS);
+    }());
+  </script>
+</body>
+</html>
