@@ -1,0 +1,530 @@
+{
+  "event": {
+    "title": "Championship Test Event 001",
+    "format": "25 Yard Indoor",
+    "status": "LIVE",
+    "clubName": "Howick Rifle Club",
+    "eventCode": "championship-def-20260819041208088",
+    "discipline": "Smallbore Rifle",
+    "competitionType": "Open Championship",
+    "competitionEventId": "cmszkry8q000doc10o1upb3wz"
+  },
+  "grades": [
+    {
+      "grade": "A",
+      "gradeLabel": "A Grade"
+    },
+    {
+      "grade": "D",
+      "gradeLabel": "D Grade"
+    }
+  ],
+  "publication": {
+    "status": "COMPLETE",
+    "generatedAt": "2026-08-19T04:42:37.906Z",
+    "publishedAt": "2026-08-19T04:42:37.923Z",
+    "publicationId": "cmszlv6540004nw10i6ckiq7g",
+    "publishingJobId": "cmszlv6520001nw10vkz5xtrj",
+    "publicationNumber": 2,
+    "competitionEventId": "cmszkry8q000doc10o1upb3wz"
+  },
+  "courseOfFire": {
+    "stages": [
+      {
+        "key": "STAGE:cmszkry8t000eoc10eu0ybcld",
+        "name": "30 Shot Match",
+        "cards": 3,
+        "shots": 30,
+        "maxInners": 30,
+        "maxPoints": 300,
+        "firingSessions": 3,
+        "cardsPerSession": 1
+      },
+      {
+        "key": "STAGE:cmszkry8t000foc10930sxz33",
+        "name": "20 Shot Match",
+        "cards": 2,
+        "shots": 20,
+        "maxInners": 20,
+        "maxPoints": 200,
+        "firingSessions": 1,
+        "cardsPerSession": 2
+      }
+    ],
+    "overall": {
+      "name": "Overall 50 Shot",
+      "shots": 50,
+      "maxInners": 50,
+      "maxPoints": 500
+    }
+  },
+  "schemaVersion": 1,
+  "tieBreakRules": [
+    {
+      "key": "WHOLE_POINTS_DESC",
+      "label": "Whole points descending"
+    },
+    {
+      "key": "INNERS_DESC",
+      "label": "Total inners descending"
+    }
+  ],
+  "resultCategories": [
+    {
+      "key": "STAGE:cmszkry8t000eoc10eu0ybcld",
+      "name": "30 Shot Match",
+      "rankings": [
+        {
+          "rank": 1,
+          "tied": false,
+          "grade": "A",
+          "inners": 17,
+          "points": 296,
+          "status": "COMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvw000gms10ptt5dqpl",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [],
+          "gradeLabel": "A Grade",
+          "shooterName": "Emmily MacLean",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 3,
+          "sessionsRequired": 3
+        },
+        {
+          "rank": 2,
+          "tied": false,
+          "grade": "D",
+          "inners": 15,
+          "points": 290,
+          "status": "COMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvu000dms10xoylii1o",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [],
+          "gradeLabel": "D Grade",
+          "shooterName": "Brenda Buck",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 3,
+          "sessionsRequired": 3
+        },
+        {
+          "rank": null,
+          "tied": false,
+          "grade": "A",
+          "inners": null,
+          "points": null,
+          "status": "INCOMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvz000mms10jtc866mc",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [],
+          "gradeLabel": "A Grade",
+          "shooterName": "Harry Newrick",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 0,
+          "sessionsRequired": 3
+        }
+      ],
+      "maxInners": 30,
+      "maxPoints": 300,
+      "shotCount": 30,
+      "resultType": "STAGE",
+      "gradeRankings": [
+        {
+          "grade": "A",
+          "rankings": [
+            {
+              "rank": 1,
+              "tied": false,
+              "grade": "A",
+              "inners": 17,
+              "points": 296,
+              "status": "COMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvw000gms10ptt5dqpl",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [],
+              "gradeLabel": "A Grade",
+              "shooterName": "Emmily MacLean",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 3,
+              "sessionsRequired": 3
+            },
+            {
+              "rank": null,
+              "tied": false,
+              "grade": "A",
+              "inners": null,
+              "points": null,
+              "status": "INCOMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvz000mms10jtc866mc",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [],
+              "gradeLabel": "A Grade",
+              "shooterName": "Harry Newrick",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 0,
+              "sessionsRequired": 3
+            }
+          ],
+          "gradeLabel": "A Grade"
+        },
+        {
+          "grade": "D",
+          "rankings": [
+            {
+              "rank": 1,
+              "tied": false,
+              "grade": "D",
+              "inners": 15,
+              "points": 290,
+              "status": "COMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvu000dms10xoylii1o",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [],
+              "gradeLabel": "D Grade",
+              "shooterName": "Brenda Buck",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 3,
+              "sessionsRequired": 3
+            }
+          ],
+          "gradeLabel": "D Grade"
+        }
+      ]
+    },
+    {
+      "key": "STAGE:cmszkry8t000foc10930sxz33",
+      "name": "20 Shot Match",
+      "rankings": [
+        {
+          "rank": 1,
+          "tied": false,
+          "grade": "A",
+          "inners": 8,
+          "points": 198,
+          "status": "COMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvw000gms10ptt5dqpl",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [],
+          "gradeLabel": "A Grade",
+          "shooterName": "Emmily MacLean",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 1,
+          "sessionsRequired": 1
+        },
+        {
+          "rank": 2,
+          "tied": false,
+          "grade": "D",
+          "inners": 4,
+          "points": 197,
+          "status": "COMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvu000dms10xoylii1o",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [],
+          "gradeLabel": "D Grade",
+          "shooterName": "Brenda Buck",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 1,
+          "sessionsRequired": 1
+        },
+        {
+          "rank": null,
+          "tied": false,
+          "grade": "A",
+          "inners": null,
+          "points": null,
+          "status": "INCOMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvz000mms10jtc866mc",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [],
+          "gradeLabel": "A Grade",
+          "shooterName": "Harry Newrick",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 0,
+          "sessionsRequired": 1
+        }
+      ],
+      "maxInners": 20,
+      "maxPoints": 200,
+      "shotCount": 20,
+      "resultType": "STAGE",
+      "gradeRankings": [
+        {
+          "grade": "A",
+          "rankings": [
+            {
+              "rank": 1,
+              "tied": false,
+              "grade": "A",
+              "inners": 8,
+              "points": 198,
+              "status": "COMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvw000gms10ptt5dqpl",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [],
+              "gradeLabel": "A Grade",
+              "shooterName": "Emmily MacLean",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 1,
+              "sessionsRequired": 1
+            },
+            {
+              "rank": null,
+              "tied": false,
+              "grade": "A",
+              "inners": null,
+              "points": null,
+              "status": "INCOMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvz000mms10jtc866mc",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [],
+              "gradeLabel": "A Grade",
+              "shooterName": "Harry Newrick",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 0,
+              "sessionsRequired": 1
+            }
+          ],
+          "gradeLabel": "A Grade"
+        },
+        {
+          "grade": "D",
+          "rankings": [
+            {
+              "rank": 1,
+              "tied": false,
+              "grade": "D",
+              "inners": 4,
+              "points": 197,
+              "status": "COMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvu000dms10xoylii1o",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [],
+              "gradeLabel": "D Grade",
+              "shooterName": "Brenda Buck",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 1,
+              "sessionsRequired": 1
+            }
+          ],
+          "gradeLabel": "D Grade"
+        }
+      ]
+    },
+    {
+      "key": "OVERALL",
+      "name": "Overall 50 Shot",
+      "rankings": [
+        {
+          "rank": 1,
+          "tied": false,
+          "grade": "A",
+          "inners": 25,
+          "points": 494,
+          "status": "COMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvw000gms10ptt5dqpl",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [
+            {
+              "label": "30 Shot Match",
+              "inners": 17,
+              "points": 296,
+              "categoryKey": "STAGE:cmszkry8t000eoc10eu0ybcld"
+            },
+            {
+              "label": "20 Shot Match",
+              "inners": 8,
+              "points": 198,
+              "categoryKey": "STAGE:cmszkry8t000foc10930sxz33"
+            }
+          ],
+          "gradeLabel": "A Grade",
+          "shooterName": "Emmily MacLean",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 4,
+          "sessionsRequired": 4
+        },
+        {
+          "rank": 2,
+          "tied": false,
+          "grade": "D",
+          "inners": 19,
+          "points": 487,
+          "status": "COMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvu000dms10xoylii1o",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [
+            {
+              "label": "30 Shot Match",
+              "inners": 15,
+              "points": 290,
+              "categoryKey": "STAGE:cmszkry8t000eoc10eu0ybcld"
+            },
+            {
+              "label": "20 Shot Match",
+              "inners": 4,
+              "points": 197,
+              "categoryKey": "STAGE:cmszkry8t000foc10930sxz33"
+            }
+          ],
+          "gradeLabel": "D Grade",
+          "shooterName": "Brenda Buck",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 4,
+          "sessionsRequired": 4
+        },
+        {
+          "rank": null,
+          "tied": false,
+          "grade": "A",
+          "inners": null,
+          "points": null,
+          "status": "INCOMPLETE",
+          "homeClub": "Howick Rifle Club",
+          "personId": "cmsyfasvz000mms10jtc866mc",
+          "entryType": "FULL_CHAMPIONSHIP",
+          "subtotals": [
+            {
+              "label": "30 Shot Match",
+              "inners": null,
+              "points": null,
+              "categoryKey": "STAGE:cmszkry8t000eoc10eu0ybcld"
+            },
+            {
+              "label": "20 Shot Match",
+              "inners": null,
+              "points": null,
+              "categoryKey": "STAGE:cmszkry8t000foc10930sxz33"
+            }
+          ],
+          "gradeLabel": "A Grade",
+          "shooterName": "Harry Newrick",
+          "entryTypeLabel": "Full Championship",
+          "sessionsComplete": 0,
+          "sessionsRequired": 4
+        }
+      ],
+      "maxInners": 50,
+      "maxPoints": 500,
+      "shotCount": 50,
+      "resultType": "OVERALL",
+      "gradeRankings": [
+        {
+          "grade": "A",
+          "rankings": [
+            {
+              "rank": 1,
+              "tied": false,
+              "grade": "A",
+              "inners": 25,
+              "points": 494,
+              "status": "COMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvw000gms10ptt5dqpl",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [
+                {
+                  "label": "30 Shot Match",
+                  "inners": 17,
+                  "points": 296,
+                  "categoryKey": "STAGE:cmszkry8t000eoc10eu0ybcld"
+                },
+                {
+                  "label": "20 Shot Match",
+                  "inners": 8,
+                  "points": 198,
+                  "categoryKey": "STAGE:cmszkry8t000foc10930sxz33"
+                }
+              ],
+              "gradeLabel": "A Grade",
+              "shooterName": "Emmily MacLean",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 4,
+              "sessionsRequired": 4
+            },
+            {
+              "rank": null,
+              "tied": false,
+              "grade": "A",
+              "inners": null,
+              "points": null,
+              "status": "INCOMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvz000mms10jtc866mc",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [
+                {
+                  "label": "30 Shot Match",
+                  "inners": null,
+                  "points": null,
+                  "categoryKey": "STAGE:cmszkry8t000eoc10eu0ybcld"
+                },
+                {
+                  "label": "20 Shot Match",
+                  "inners": null,
+                  "points": null,
+                  "categoryKey": "STAGE:cmszkry8t000foc10930sxz33"
+                }
+              ],
+              "gradeLabel": "A Grade",
+              "shooterName": "Harry Newrick",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 0,
+              "sessionsRequired": 4
+            }
+          ],
+          "gradeLabel": "A Grade"
+        },
+        {
+          "grade": "D",
+          "rankings": [
+            {
+              "rank": 1,
+              "tied": false,
+              "grade": "D",
+              "inners": 19,
+              "points": 487,
+              "status": "COMPLETE",
+              "homeClub": "Howick Rifle Club",
+              "personId": "cmsyfasvu000dms10xoylii1o",
+              "entryType": "FULL_CHAMPIONSHIP",
+              "subtotals": [
+                {
+                  "label": "30 Shot Match",
+                  "inners": 15,
+                  "points": 290,
+                  "categoryKey": "STAGE:cmszkry8t000eoc10eu0ybcld"
+                },
+                {
+                  "label": "20 Shot Match",
+                  "inners": 4,
+                  "points": 197,
+                  "categoryKey": "STAGE:cmszkry8t000foc10930sxz33"
+                }
+              ],
+              "gradeLabel": "D Grade",
+              "shooterName": "Brenda Buck",
+              "entryTypeLabel": "Full Championship",
+              "sessionsComplete": 4,
+              "sessionsRequired": 4
+            }
+          ],
+          "gradeLabel": "D Grade"
+        }
+      ]
+    }
+  ]
+}
